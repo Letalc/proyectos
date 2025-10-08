@@ -1,0 +1,89 @@
+:root {
+  --bg: #f6f7fb;
+  --card-bg: #fff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2563eb;
+  --ok: #10b981;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow: 0 10px 18px rgba(0, 0, 0, 0.06);
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 24px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 10% 0%, #ffffff 0%, var(--bg) 100%);
+}
+
+h1 { margin: 0 0 16px; font-size: clamp(1.4rem, 2vw, 1.8rem); color: #0f172a; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+  border-color: #d1d5db;
+}
+.card h2 { margin: 0 0 6px; font-size: 1.05rem; }
+
+.badges { display: flex; gap: 6px; margin-bottom: 8px; }
+.badge {
+  display: inline-block;
+  font-size: .74rem;
+  color: white;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.badge.inst { background: var(--ok); }
+.badge.noinst { background: var(--danger); }
+.badge.run { background: var(--accent); }
+.badge.stopped { background: var(--warn); }
+
+.specs { line-height: 1.6; }
+.specs b { color: #111827; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+button {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  color: #111827;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  transition: background 140ms ease, transform 80ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+button:hover { background: #eef2ff; border-color: #c7d2fe; }
+button:active { transform: translateY(1px); }
+button:focus-visible { outline: 3px solid rgba(37,99,235,.35); outline-offset: 2px; }
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #f3f4f6;
+}
+
+.actions .install { background: #eff6ff; }
+.actions .uninstall { background: #fee2e2; }
+.actions .open { background: #ecfeff; }
