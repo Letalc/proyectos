@@ -1,0 +1,64 @@
+<!--4) Cofla ya esta terminando el primer semestre del primer ciclo, la tarea que le debe realizar es mucho mas avanzada de la que tenia antes, ademas de suma, resta, multiplicacion y division
+ahora tambien necesitara calcular potencias, raices cuadradas y cubicas.
+
+CREAR SOLUCIONES:
+
+- Perfeccionar calculadora para poder implementar las nuevas funciones-->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Calculadora avanzada Cofla</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Calculadora avanzada</h1>
+
+      <section class="card">
+        <div class="row">
+          <label for="operacion">Operación</label>
+          <select id="operacion">
+            <option value="sumar">1) Suma</option>
+            <option value="restar">2) Resta</option>
+            <option value="dividir">3) División</option>
+            <option value="multiplicar">4) Multiplicación</option>
+            <option value="potenciar">5) Potenciación</option>
+            <option value="raizCuadrada">6) Raíz cuadrada</option>
+            <option value="raizCubica">7) Raíz cúbica</option>
+          </select>
+        </div>
+
+        <div class="inputs">
+          <div class="row">
+            <label for="numero1" id="label-num1">Número 1</label>
+            <input id="numero1" type="number" inputmode="decimal" placeholder="Ej: 12.5">
+          </div>
+
+          <div class="row">
+            <label for="numero2" id="label-num2">Número 2</label>
+            <input id="numero2" type="number" inputmode="decimal" placeholder="Ej: 3" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="calcular" class="primary">Calcular</button>
+          <button id="limpiar" class="ghost">Limpiar</button>
+        </div>
+
+        <div id="resultado" class="result" aria-live="polite">Resultado: —</div>
+        <p class="muted tip">Consejo: presiona <kbd>Enter</kbd> para calcular.</p>
+      </section>
+
+      <section class="card">
+        <h2>Historial</h2>
+        <ul id="historial" class="history"></ul>
+        <button id="borrar-historial" class="danger small">Borrar historial</button>
+      </section>
+    </main>
+
+    <script src="code.js"></script>
+  </body>
+</html>
