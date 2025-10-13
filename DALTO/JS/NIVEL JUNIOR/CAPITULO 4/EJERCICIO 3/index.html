@@ -1,0 +1,46 @@
+<!--C) Cofla ya vio las 12 materias y se decidió en cual se va a inscribir asi que en tres dias lo hara, el problema es que se rompio el sistema de inscripciones.
+
+CREAR SOLUCIONES:
+
+- Crear una funcion para preguntarle a cofla en que materia se quiere inscribir. I
+- Si ya hay 20 alumnos anotados en la materia negarle la inscripción.
+- Si hay menos de 20 alumnos inscribir a cofla y añadirlo a la lista de alumnos.-->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Historia de Cofla 4 — Inscripciones</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Inscripción a materias</h1>
+
+      <section class="card">
+        <h2>Nueva inscripción</h2>
+        <div class="form">
+          <input id="alumno" type="text" placeholder="Nombre del alumno (ej: pedrito)" />
+          <select id="materia">
+            <option value="fisica">Física</option>
+            <option value="programacion">Programación</option>
+            <option value="logica">Lógica</option>
+            <option value="quimica">Química</option>
+          </select>
+          <button id="btn-inscribir" class="primary">Inscribir</button>
+          <button id="btn-limpiar" class="ghost">Limpiar</button>
+        </div>
+        <div id="mensaje" class="result" aria-live="polite">Ingresa un nombre y elige una materia.</div>
+        <p class="muted tip">Capacidad: 21 lugares por materia (incluye profesor) → máximo 20 alumnos.</p>
+      </section>
+
+      <section>
+        <h2>Materias</h2>
+        <div id="grid" class="grid"></div>
+      </section>
+    </main>
+
+    <script src="code.js"></script>
+  </body>
+</html>
