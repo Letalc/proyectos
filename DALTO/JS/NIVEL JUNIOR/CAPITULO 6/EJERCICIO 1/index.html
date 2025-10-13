@@ -1,0 +1,32 @@
+<!--cofla se quedo encerrado en su casa porque se le rompio la llave, pero necesita ir urgente a la facultad porque no puede faltar ni una sola vez si quiere aprobar las materias que le faltan,
+ya que esta al limite de asistencias, entonces tiene que llamar un cerrajero y pedirle que traiga la llave indicada, no hay tiempo suficiente como para que el cerrajero vea cual es la llave
+indicada, solo puede traer una y probar, entonces cofla se da cuenta que es una llave antigua, por ende no hace falta afilarla, solo necesita decirle el modelo de llave para que el
+cerrajero venga, pero cofla tiene tanta mala suerte que nisiquiera tiene internet para poder buscar, lo que si tiene es a un programador que le hara un sistema para mostrarle las llaves
+posibles y determinar cual es la indicada, hay solo 10 modelos posibles, permitir que cofla seleccione el indicado.-->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Historia de Cofla 6 — Tienda de Llaves</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Elige tu llave</h1>
+
+      <section class="grid" aria-label="Listado de llaves">
+        <div class="flex-container"></div>
+      </section>
+
+      <form id="form-compra" class="buy">
+        <input type="hidden" name="data" class="key-data">
+        <button type="submit" class="send-button" disabled>COMPRAR</button>
+        <span id="feedback" class="muted">Selecciona una llave para continuar.</span>
+      </form>
+    </main>
+
+    <script src="codigo.js"></script>
+  </body>
+</html>
