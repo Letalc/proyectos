@@ -1,0 +1,44 @@
+<!--B) La falcultad de cofla esta por comenzar y ya las 12 materias de la carrera tienen asignado un profesor y todos los alumnos que se anotaron en dichas clases, peeero necesitamos ver esto
+mas ordenadamente.
+
+CREAR SOLUCIONES:
+
+- Crear una funcion que al pasarle como parametro la materia nos devuelva:
+*profesor asignado
+*el nombre de todos los alumnos
+
+- Crear función que nos diga en cuantas clases esta cofla.
+- Nombrar las clases en las que esta y los profesores de cada una.
+
+-->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Materias y alumnado</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Materias, profesores y alumnos</h1>
+
+      <section class="card">
+        <h2>Buscar alumno</h2>
+        <div class="search">
+          <input id="input-alumno" type="text" placeholder="Ej: cofla, pedro, maria..." />
+          <button id="btn-buscar" class="primary">Buscar</button>
+          <button id="btn-limpiar" class="ghost">Limpiar</button>
+        </div>
+        <div id="resultado-alumno" class="result" aria-live="polite">Escribe un nombre y presiona “Buscar”.</div>
+      </section>
+
+      <section>
+        <h2>Materias</h2>
+        <div id="materias" class="grid"></div>
+      </section>
+    </main>
+
+    <script src="code.js"></script>
+  </body>
+</html>
