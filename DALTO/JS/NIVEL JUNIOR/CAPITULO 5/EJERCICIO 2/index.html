@@ -1,0 +1,43 @@
+<!--b) cofla está sufriendo un poco ... ya que, a pesar de que cree contar con el 90% de asistencias
+y tener un promedio mayor a 7 / 10, no cree entregar el 75% de trabajos practicos entregados ya
+que necesita dividir las tareas que hara semanalmente, cofla debe, trabar 8 horas por dia
+durante 2 semanas entre las cuales tiene que: 24 horas estudiar, 24 horas hacer trabajos
+practicos, 56 horas de trabajar 8 horas de hacer las cosas de la casa
+
+- Organizar las actividades diariamente
+- Utilizar la consola para organizar todo.
+- el tiempo por tarea no debe superar las 4 horas-->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tareas por día (2 semanas)</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Plan de tareas (14 días)</h1>
+
+      <section class="card controls">
+        <div class="row">
+          <label for="unidad">Unidad de tiempo</label>
+          <select id="unidad">
+            <option value="min">Minutos</option>
+            <option value="h">Horas</option>
+          </select>
+        </div>
+        <div class="buttons">
+          <button id="expandir" class="primary">Expandir todo</button>
+          <button id="colapsar" class="ghost">Colapsar todo</button>
+        </div>
+        <p class="muted tip">Tareas diarias: trabajo 240, descanso 10, estudio 100, trabajos prácticos 100, casa 30 (total 480 min = 8 h).</p>
+      </section>
+
+      <section id="semanas" class="weeks"></section>
+    </main>
+
+    <script src="code.js"></script>
+  </body>
+</html>
