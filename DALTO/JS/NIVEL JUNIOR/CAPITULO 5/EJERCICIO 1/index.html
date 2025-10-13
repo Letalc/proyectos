@@ -1,0 +1,42 @@
+<!--a) Termino el primer semestre y cofla no sabe aprobará o no las materias, para lograrlo necesitará:
+Contar con al menos el 90% de asistencia.
+El promedio por materia debe ser de al menos 7 / 10.
+Debe tener al menos del 75% de los trabajos prácticos entregados.
+
+- Solicitar los datos y decirle si aprueba o no.
+- Mostrar todo esto con colores representativos en consola (ej: no aprobar en rojo)
+- Todo esto estructurado como tabla-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aprobación por materia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Estado de Aprobación</h1>
+
+    <section class="card controls">
+      <div class="row">
+        <label for="filtro">Filtrar</label>
+        <select id="filtro">
+          <option value="todas">Todas</option>
+          <option value="aprobadas">Aprobadas</option>
+          <option value="desaprobadas">Desaprobadas</option>
+        </select>
+      </div>
+      <p class="muted tip">Reglas: asistencia ≥ <b>90%</b>, promedio ≥ <b>7</b>, trabajos ≥ <b>3</b>.</p>
+    </section>
+
+    <section>
+      <div id="grid" class="grid"></div>
+    </section>
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>
+
