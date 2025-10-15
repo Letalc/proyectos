@@ -1,0 +1,50 @@
+<!--b) Cofla llega a su casa y abre una página y apreta F11, desde ahi se pone a navegar pero hay un problema ... como ahora esta en pantalla completa no puede ver ni la barra de marcadores, ni
+el protocolo, ni la URL, ni ninguna informacion que nos puede otorgar la interfaz que contiene la barra de busqueda.
+
+- Crear un sistema que muestre los suficientes datos como para conocer el sitio web.-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inspector de URL</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Inspector de URL</h1>
+
+    <section class="card">
+      <div class="stats">
+        <div class="row"><span class="label">Protocolo</span>     <code id="proto"></code></div>
+        <div class="row"><span class="label">Hostname</span>      <code id="host"></code></div>
+        <div class="row"><span class="label">Puerto</span>        <code id="port"></code></div>
+        <div class="row"><span class="label">Pathname</span>      <code id="path"></code></div>
+        <div class="row"><span class="label">Hash</span>          <code id="hash"></code></div>
+        <div class="row"><span class="label">Búsqueda (query)</span> <code id="search"></code></div>
+      </div>
+
+      <div class="actions">
+        <button id="copy-full" class="primary">Copiar URL completa</button>
+        <button id="copy-path">Copiar Path</button>
+        <button id="refresh">Refrescar</button>
+      </div>
+
+      <div class="result" id="full-url" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>Parámetros de consulta</h2>
+      <div id="params-vacios" class="muted">No hay parámetros en la URL.</div>
+      <table id="params" class="table" hidden>
+        <thead><tr><th>Clave</th><th>Valor</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>
+
