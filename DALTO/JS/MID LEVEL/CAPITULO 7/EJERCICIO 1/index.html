@@ -1,0 +1,42 @@
+<!--a) Despues de aprobar, cofla se compra una mejor computadora para poder programar mejor y hacer todo de una forma mas optima pero necesita una resolucion optima para poder trabajarla.
+. Debe ser al menos full HD
+- Cuando la este por comprar, preguntarle si está seguro de eso.-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compra optimizada</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Confirmación de compra</h1>
+
+    <section class="card" aria-live="polite">
+      <p class="muted">Verificá que tu pantalla sea adecuada antes de comprar.</p>
+
+      <div class="stats">
+        <div class="stat"><span>Viewport (ancho × alto)</span> <strong id="vp"></strong></div>
+        <div class="stat"><span>Device Pixel Ratio</span> <strong id="dpr"></strong></div>
+        <div class="stat"><span>Orientación</span> <strong id="ori"></strong></div>
+      </div>
+
+      <div class="actions">
+        <button id="comprar" class="primary">Comprar</button>
+        <button id="cancelar" class="ghost">Cancelar</button>
+      </div>
+
+      <div id="resultado" class="result" role="status">Esperando tu decisión…</div>
+    </section>
+
+    <noscript>
+      <p class="warn">Esta página requiere JavaScript para mostrar dimensiones y confirmar la compra.</p>
+    </noscript>
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>
+
