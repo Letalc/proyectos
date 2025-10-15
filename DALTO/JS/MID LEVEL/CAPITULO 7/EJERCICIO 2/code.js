@@ -1,34 +1,57 @@
-const el = (id) => document.getElementById(id);
-const proto = el('proto'), host = el('host'), port = el('port'), path = el('path');
-const hash = el('hash'), search = el('search'), full = el('full-url');
-const tbl = el('params'), tbody = tbl.querySelector('tbody'), emptyMsg = el('params-vacios');
+const $ = (id) => document.getElementById(id);
+const proto = $('proto'), host = $('host'), port = $('port'), path = $('path');
+const hash = $('hash'), search = $('search'), full = $('full-url');
+const tbl = $('params'), tbody = tbl.querySelector('tbody'), emptyMsg = $('params-vacios');
+const inputUrl = $('input-url'), btnAnalizar = $('btn-analizar'), btnActual = $('btn-actual');
+const btnCopyFull = $('copy-full'), btnCopyPath = $('copy-path'), btnRefresh = $('refresh');
+const errorBox = $('error');
 
-function getInfo() {
-  // La API URL es más robusta que concatenar window.location.*
-  const url = new URL(window.location.href);
+let ultimaURL = new URL(window.location.href); // estado mostrado
+
+function normalizaEntrada(valor){
+  let s = (valor || '').trim();
+  if (!s) throw new Error('Pegá una URL primero.');
+  // Si no tiene esquema, asumir https
+  if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(s)) s = 'https://' + s;
+  return s;
+}
+
+function parseURL(str){
+  return new URL(str);
+}
+
+function getInfo(url) {
   return {
-    protocol: url.protocol,          // ej. "https:"
-    hostname: url.hostname,          // ej. "example.com"
+    protocol: url.protocol,
+    hostname: url.hostname,
     port: url.port || '(por defecto)',
     pathname: url.pathname || '/',
     hash: url.hash || '(sin hash)',
     search: url.search || '(sin query)',
     href: url.href,
-    params: [...url.searchParams.entries()] // array de [k,v]
+    params: [...url.searchParams.entries()]
   };
 }
 
-function render() {
-  const info = getInfo();
-  proto.textContent = info.protocol;
-  host.textContent  = info.hostname;
-  port.textContent  = info.port;
-  path.textContent  = info.pathname;
-  hash.textContent  = info.hash;
-  search.textContent = info.search;
-  full.textContent  = `URL Completa: ${info.href}`;
+function escapeHtml(s='') {
+  return String(s)
+    .replaceAll('&','&amp;').replaceAll('<','&lt;')
+    .replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;");
+}
 
-  // Parámetros
+function render(url = ultimaURL) {
+  ultimaURL = url; // persistimos
+  const info = getInfo(url);
+
+  proto.textContent  = info.protocol;
+  host.textContent   = info.hostname;
+  port.textContent   = info.port;
+  path.textContent   = info.pathname;
+  hash.textContent   = info.hash;
+  search.textContent = info.search;
+  full.textContent   = `URL Completa: ${info.href}`;
+
+  // tabla de params
   tbody.innerHTML = '';
   if (info.params.length === 0) {
     tbl.hidden = true;
@@ -48,36 +71,61 @@ function render() {
   }
 }
 
-function escapeHtml(s='') {
-  return String(s)
-    .replaceAll('&','&amp;').replaceAll('<','&lt;')
-    .replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;");
+function mostrarError(msg){
+  errorBox.textContent = '❌ ' + msg;
+  errorBox.hidden = false;
+}
+function limpiarError(){
+  errorBox.hidden = true;
+  errorBox.textContent = '';
 }
 
 // Copiar helpers
 async function copyText(text) {
   try {
     await navigator.clipboard.writeText(text);
-    toast('Copiado ✅');
+    full.textContent = 'Copiado ✅ ' + new Date().toLocaleTimeString();
+    setTimeout(() => render(ultimaURL), 800);
   } catch {
-    // Fallback
     const ta = document.createElement('textarea');
     ta.value = text; document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); toast('Copiado ✅'); }
-    finally { document.body.removeChild(ta); }
+    try { document.execCommand('copy'); full.textContent = 'Copiado ✅'; }
+    finally { document.body.removeChild(ta); setTimeout(() => render(ultimaURL), 800); }
   }
 }
-function toast(msg){
-  full.textContent = msg + ' · ' + new Date().toLocaleTimeString();
-  setTimeout(render, 800);
-}
 
-// Botones
-el('copy-full').addEventListener('click', () => copyText(window.location.href));
-el('copy-path').addEventListener('click', () => copyText(window.location.pathname));
-el('refresh').addEventListener('click', render);
+// Listeners barra de entrada
+btnAnalizar.addEventListener('click', () => {
+  try{
+    limpiarError();
+    const normal = normalizaEntrada(inputUrl.value);
+    const url = parseURL(normal);
+    render(url);
+  } catch (e){
+    mostrarError(e.message || 'URL inválida.');
+  }
+});
 
-// Copiar valor de fila params
+btnActual.addEventListener('click', () => {
+  limpiarError();
+  inputUrl.value = window.location.href;
+  render(new URL(window.location.href));
+});
+
+// Accesibilidad: Enter en input
+inputUrl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    btnAnalizar.click();
+  }
+});
+
+// Botones copiar/refresh
+btnCopyFull.addEventListener('click', () => copyText(ultimaURL.href));
+btnCopyPath.addEventListener('click', () => copyText(ultimaURL.pathname));
+btnRefresh.addEventListener('click', () => render(ultimaURL));
+
+// Copiar valor de fila en params
 tbody.addEventListener('click', (e) => {
   const btn = e.target.closest('.copy-mini');
   if (!btn) return;
@@ -85,9 +133,9 @@ tbody.addEventListener('click', (e) => {
   copyText(val);
 });
 
-// Actualizar cuando cambian hash o historial
-window.addEventListener('hashchange', render);
-window.addEventListener('popstate', render);
+// También escuchar cambios de la URL actual (por si navegan)
+window.addEventListener('hashchange', () => render(new URL(window.location.href)));
+window.addEventListener('popstate', () => render(new URL(window.location.href)));
 
-// Inicial
-render();
+// Inicial: mostrar URL actual del navegador
+render(new URL(window.location.href));

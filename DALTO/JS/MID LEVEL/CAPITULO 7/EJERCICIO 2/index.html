@@ -15,20 +15,31 @@ el protocolo, ni la URL, ni ninguna informacion que nos puede otorgar la interfa
   <main class="container">
     <h1>Inspector de URL</h1>
 
+    <!-- Nuevo: Analizador de URL -->
+    <section class="card controls">
+      <label for="input-url">Pega una URL para analizar</label>
+      <div class="urlbar">
+        <input id="input-url" type="text" placeholder="https://ejemplo.com/ruta?x=1#seccion" />
+        <button id="btn-analizar" class="primary">Analizar</button>
+        <button id="btn-actual" title="Usar la URL actual">Usar actual</button>
+      </div>
+      <p id="error" class="error" hidden></p>
+    </section>
+
     <section class="card">
       <div class="stats">
-        <div class="row"><span class="label">Protocolo</span>     <code id="proto"></code></div>
-        <div class="row"><span class="label">Hostname</span>      <code id="host"></code></div>
-        <div class="row"><span class="label">Puerto</span>        <code id="port"></code></div>
-        <div class="row"><span class="label">Pathname</span>      <code id="path"></code></div>
-        <div class="row"><span class="label">Hash</span>          <code id="hash"></code></div>
+        <div class="row"><span class="label">Protocolo</span>        <code id="proto"></code></div>
+        <div class="row"><span class="label">Hostname</span>         <code id="host"></code></div>
+        <div class="row"><span class="label">Puerto</span>           <code id="port"></code></div>
+        <div class="row"><span class="label">Pathname</span>         <code id="path"></code></div>
+        <div class="row"><span class="label">Hash</span>             <code id="hash"></code></div>
         <div class="row"><span class="label">Búsqueda (query)</span> <code id="search"></code></div>
       </div>
 
       <div class="actions">
         <button id="copy-full" class="primary">Copiar URL completa</button>
         <button id="copy-path">Copiar Path</button>
-        <button id="refresh">Refrescar</button>
+        <button id="refresh">Refrescar (volver a mostrar)</button>
       </div>
 
       <div class="result" id="full-url" aria-live="polite"></div>
@@ -47,4 +58,3 @@ el protocolo, ni la URL, ni ninguna informacion que nos puede otorgar la interfa
   <script src="code.js"></script>
 </body>
 </html>
-
