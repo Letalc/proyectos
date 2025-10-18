@@ -1,0 +1,52 @@
+<!--A) Cofla reprobó 2 materias y ahora tiene que enviar un formulario para
+registrarse en la materia que debe.
+
+- El formulario debe contener nombre completo, mail y materia adeudada.
+
+- Se debe validar que el mail sea valido, que los nombres sean reales.
+
+- Se debe enviar al servidor de manera pulida-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inscripción de materias adeudadas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <form id="form-mesa" novalidate>
+      <h2>INSCRIPCIÓN DE MATERIAS ADEUDADAS</h2>
+
+      <div class="field">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" minlength="5" maxlength="40" required>
+        <small class="error-msg" id="err-nombre"></small>
+      </div>
+
+      <div class="field">
+        <label for="mail">Email</label>
+        <input type="email" id="mail" name="mail" placeholder="ejemplo@correo.com" minlength="5" maxlength="40" required>
+        <small class="error-msg" id="err-mail"></small>
+      </div>
+
+      <div class="field">
+        <label for="materia">Materia</label>
+        <input type="text" id="materia" name="materia" placeholder="Ej: Álgebra I" minlength="4" maxlength="40" required>
+        <small class="error-msg" id="err-materia"></small>
+      </div>
+
+      <div class="actions">
+        <button type="submit" id="btn-enviar" class="btn">Solicitar Mesa</button>
+      </div>
+
+      <p id="resultado" class="result" aria-live="polite">Completá el formulario y enviá.</p>
+    </form>
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>
+
